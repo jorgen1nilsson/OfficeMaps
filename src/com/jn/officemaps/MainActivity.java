@@ -13,6 +13,7 @@ public class MainActivity extends FragmentActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		// Normal layout
 		if (findViewById(R.id.maps_container) != null) {
 			if (savedInstanceState != null)
 				return;
@@ -34,7 +35,7 @@ public class MainActivity extends FragmentActivity
 
 	public void onItemSelected(int position) {
 		MapFragment mapFragment = (MapFragment)
-				getSupportFragmentManager().findFragmentById(R.id.map);
+				getSupportFragmentManager().findFragmentById(R.id.map_fragment);
 		if (mapFragment != null) {
 			mapFragment.updateMapView(position);
 		} else {

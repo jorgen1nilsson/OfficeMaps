@@ -11,33 +11,28 @@ import android.widget.ListView;
 public class FloorPlansFragment extends ListFragment {
 	
 	OnItemSelectedListener mSelectListener;
-
-    // The container Activity must implement this interface so the frag can deliver messages
+	
     public interface OnItemSelectedListener {
-        /** Called by HeadlinesFragment when a list item is selected */
         public void onItemSelected(int position);
     }
 	
 	public void onCreate(Bundle savedInstanceState) {
 		int layout;
-		super.onCreate(savedInstanceState);
-		
+		super.onCreate(savedInstanceState);	
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 			layout = android.R.layout.simple_list_item_activated_1;
 		else
 			layout = android.R.layout.simple_list_item_1;
-		
-		//setListAdapter(new ArrayAdapter<String>(getActivity(), layout, FloorPlansFragment.Headlines));
 		setListAdapter(new ArrayAdapter<String>(getActivity(), layout,
 				getResources().getStringArray(R.array.FloorNames)));
-		
 	}
 	
 	public void onStart() {
 		super.onStart();
 		// Check if we need to set a default floor for the maps view
-		if (getFragmentManager().findFragmentById(R.id.map) != null)
+		if (getFragmentManager().findFragmentById(R.id.map_fragment) != null) {
 			getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		}
 	}
 	
 	public void onListItemClick(ListView l, View v, int position, long id) {
